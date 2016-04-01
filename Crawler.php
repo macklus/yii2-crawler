@@ -63,6 +63,21 @@ class Crawler extends Component
 //        $this->connection->setClient($guzzleClient);
 //    }
 
+    public function connect($var)
+    {
+        $this->$var = 'algo';
+    }
+
+    public function __set($name, $value)
+    {
+        if (!isset($this->{$name})) {
+            $this->{$name} = $value;
+            return true;
+        } else {
+            return parent::__set($name, $value);
+        }
+    }
+
     public function setUserAgent()
     {
         $this->connection->setHeader('User-Agent', $this->userAgent);
